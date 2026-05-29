@@ -1,0 +1,115 @@
+<div class="home">
+  <section class="hero" appFadeIn>
+    <div class="row align-items-center g-4">
+      <div class="col-lg-7">
+        <h1 class="hero__title">{{ profile.name }}</h1>
+        <p class="hero__role">
+          <span class="hero__typing">{{ profile.role }}</span>
+        </p>
+        <div class="hero__intro-card">
+          @for (line of profile.introCardMessage; track $index) {
+            <p class="hero__intro-card-text">{{ line }}</p>
+          }
+        </div>
+        <div class="hero__resume">
+          <a
+            mat-stroked-button
+            color="primary"
+            class="hero__connect-btn"
+            [href]="profile.resumePath"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <mat-icon>description</mat-icon>
+            Resume
+          </a>
+          <a
+            mat-stroked-button
+            color="primary"
+            class="hero__connect-btn"
+            routerLink="/"
+            fragment="skills"
+          >
+            <mat-icon>psychology</mat-icon>
+            Know my skills
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="hero__aside">
+          <div class="hero__avatar mx-auto">
+            @if (profile.profilePhotoSrc) {
+              <img
+                class="hero__profile-avatar-img"
+                [src]="profile.profilePhotoSrc"
+                width="320"
+                height="320"
+                decoding="async"
+              />
+            } @else {
+              <mat-icon class="hero__avatar-icon">person</mat-icon>
+            }
+          </div>
+
+          <div id="contact" class="hero__connect hero__connect--aside" aria-labelledby="hero-connect-heading">
+            <div class="hero__connect-inner">
+              <h2 id="hero-connect-heading" class="hero__connect-title">Let's connect</h2>
+              <ul class="hero__connect-direct">
+                @if (profile.location) {
+                  <li class="hero__connect-row">
+                    <span class="hero__connect-icon-wrap" aria-hidden="true">
+                      <mat-icon>location_on</mat-icon>
+                    </span>
+                    <div>
+                      <span class="hero__connect-value">{{ profile.location }}</span>
+                    </div>
+                  </li>
+                }
+                <li class="hero__connect-row">
+                  <span class="hero__connect-icon-wrap" aria-hidden="true">
+                    <mat-icon>mail</mat-icon>
+                  </span>
+                  <div>
+                    <a class="hero__connect-value hero__connect-link" href="mailto:{{ profile.email }}">{{ profile.email }}</a>
+                  </div>
+                </li>
+                <li class="hero__connect-row">
+                  <span class="hero__connect-icon-wrap" aria-hidden="true">
+                    <mat-icon>phone</mat-icon>
+                  </span>
+                  <div>
+                    <a class="hero__connect-value hero__connect-link" href="tel:{{ profile.phone }}">{{ profile.phone }}</a>
+                  </div>
+                </li>
+              </ul>
+              <div class="hero__connect-quick">
+                <a
+                  mat-stroked-button
+                  color="primary"
+                  class="hero__connect-btn"
+                  [href]="profile.linkedInUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <mat-icon>work</mat-icon>
+                  LinkedIn
+                </a>
+                <a
+                  mat-stroked-button
+                  color="primary"
+                  class="hero__connect-btn"
+                  [href]="profile.githubUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <mat-icon>code</mat-icon>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

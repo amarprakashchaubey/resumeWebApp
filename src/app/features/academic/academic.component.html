@@ -1,0 +1,27 @@
+<div class="page-academic" appFadeIn>
+  <app-section-title
+  title="Academic"
+  subtitle="&ldquo;Education is the scaffolding for how you argue with complexity&rdquo; &mdash; degrees and honors that grounded my CS foundations before years of building real systems."
+/>
+  <div class="row g-4">
+    @for (edu of education; track edu.degree) {
+      <div class="col-md-6">
+        <app-card>
+          <div class="edu-card">
+            <div class="edu-card__icon" aria-hidden="true">
+              <mat-icon>school</mat-icon>
+            </div>
+            <div>
+              <h3 class="edu-card__degree">{{ edu.degree }}</h3>
+              <p class="edu-card__school">{{ edu.institution }}</p>
+              <p class="edu-card__year">{{ edu.year }}</p>
+              @if (edu.detail) {
+                <p class="edu-card__detail">{{ edu.detail }}</p>
+              }
+            </div>
+          </div>
+        </app-card>
+      </div>
+    }
+  </div>
+</div>

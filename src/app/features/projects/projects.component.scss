@@ -1,0 +1,284 @@
+$glass-spring: cubic-bezier(0.22, 1.05, 0.36, 1);
+$glass-spring-soft: cubic-bezier(0.28, 1.15, 0.42, 1);
+
+.page-projects {
+  width: 100%;
+}
+
+.projects-glass-grid {
+  margin-inline: 0;
+}
+
+.proj-glass-card {
+  outline: none;
+  border-radius: 22px;
+  height: 100%;
+
+  &:focus-visible .proj-glass-card__surface {
+    outline: 2px solid var(--pf-accent, #2563eb);
+    outline-offset: 3px;
+  }
+}
+
+.proj-glass-card__surface {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 11rem;
+  padding: clamp(1.35rem, 3vw, 1.75rem);
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.52) 0%,
+      rgba(255, 255, 255, 0.22) 45%,
+      rgba(255, 255, 255, 0.12) 100%
+    );
+  backdrop-filter: blur(18px) saturate(1.35);
+  -webkit-backdrop-filter: blur(18px) saturate(1.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    0 8px 32px rgba(15, 23, 42, 0.08);
+
+  transition:
+    transform 0.58s $glass-spring,
+    box-shadow 0.58s $glass-spring,
+    border-color 0.35s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    .proj-glass-card:hover & {
+      transform: scale(1.02);
+      border-color: rgba(255, 255, 255, 0.62);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.75),
+        0 22px 56px rgba(37, 99, 235, 0.16),
+        0 0 0 1px rgba(59, 130, 246, 0.12);
+    }
+
+    .proj-glass-card:focus-within & {
+      transform: scale(1.02);
+      border-color: rgba(255, 255, 255, 0.62);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.75),
+        0 22px 56px rgba(37, 99, 235, 0.14),
+        0 0 0 1px rgba(59, 130, 246, 0.12);
+    }
+  }
+}
+
+.proj-glass-card__preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.35rem;
+  flex: 1;
+}
+
+.proj-glass-card__title {
+  margin: 0;
+  font-size: clamp(1.12rem, 2vw, 1.28rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  color: var(--pf-text, #0f172a);
+}
+
+.proj-glass-card__type {
+  margin: 0;
+  max-width: 22rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--pf-muted, #64748b);
+  letter-spacing: 0.01em;
+}
+
+.proj-glass-card__period {
+  margin: 0 0 0.65rem;
+  padding-top: 0.45rem;
+  font-size: 0.8rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pf-accent-strong, #1d4ed8);
+  text-align: center;
+}
+
+.proj-glass-card__tech-heading {
+  margin: 1rem 0 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pf-muted, #64748b);
+  text-align: center;
+}
+
+.proj-glass-card__expand {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.62s $glass-spring-soft;
+}
+
+.proj-glass-card__expand-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.proj-glass-card__desc {
+  margin: 0;
+  padding-top: 0;
+  color: var(--pf-muted, #64748b);
+  line-height: 1.65;
+  font-size: 0.98rem;
+  text-align: center;
+}
+
+.proj-glass-card__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  justify-content: center;
+  margin-top: 0;
+}
+
+.proj-tech-pill {
+  font-size: 0.78rem;
+  padding: 0.28rem 0.62rem;
+  border-radius: 999px;
+  font-weight: 500;
+  color: var(--pf-text, #0f172a);
+  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+
+  opacity: 0;
+  transform: scale(0.88) translateY(8px);
+  transition-property: opacity, transform;
+  transition-duration: 0.38s, 0.46s;
+  transition-timing-function: $glass-spring, $glass-spring;
+  transition-delay: 0ms, 0ms;
+
+  @media (hover: hover) and (pointer: fine) {
+    .proj-glass-card:hover &,
+    .proj-glass-card:focus-within & {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      transition-delay:
+        calc(var(--tag-i, 0) * 50ms),
+        calc(var(--tag-i, 0) * 50ms);
+    }
+  }
+}
+
+.proj-glass-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1.2rem;
+
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.42s $glass-spring 0.15s,
+    transform 0.48s $glass-spring 0.15s;
+
+  @media (hover: hover) and (pointer: fine) {
+    .proj-glass-card:hover &,
+    .proj-glass-card:focus-within & {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  mat-icon {
+    margin-right: 0.25rem;
+    vertical-align: middle;
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .proj-glass-card__expand {
+    grid-template-rows: 1fr;
+  }
+
+  .proj-tech-pill {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .proj-glass-card__actions {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .proj-glass-card__surface {
+    transform: none;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .proj-glass-card__expand {
+    grid-template-rows: 1fr;
+  }
+
+  .proj-tech-pill {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    background: rgba(37, 99, 235, 0.08);
+    color: var(--pf-accent-strong, #1d4ed8);
+    border: 1px solid rgba(37, 99, 235, 0.18);
+  }
+
+  .proj-glass-card__actions {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .proj-glass-card__surface {
+    transform: none;
+    min-height: auto;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 992px) {
+  .proj-glass-card:hover .proj-glass-card__expand,
+  .proj-glass-card:focus-within .proj-glass-card__expand {
+    grid-template-rows: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proj-glass-card__surface,
+  .proj-glass-card__expand,
+  .proj-tech-pill,
+  .proj-glass-card__actions {
+    transition: none !important;
+  }
+
+  .proj-glass-card__surface {
+    transform: none !important;
+  }
+
+  .proj-glass-card__expand {
+    grid-template-rows: 1fr !important;
+  }
+
+  .proj-tech-pill,
+  .proj-glass-card__actions {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

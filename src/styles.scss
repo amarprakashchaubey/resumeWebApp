@@ -1,0 +1,449 @@
+/* Bootstrap (grid, navbar utilities, layout helpers) */
+@import "bootstrap/scss/bootstrap";
+
+/* Global tokens */
+:root {
+  color-scheme: light;
+  --pf-bg: #f6f8fc;
+  --pf-text: #0f172a;
+  --pf-muted: #64748b;
+  --pf-accent: #2563eb;
+  --pf-accent-strong: #1d4ed8;
+  --pf-panel-shadow: 0 14px 38px rgba(15, 23, 42, 0.06);
+  /* Single-page section rhythm */
+  --pf-section-gap: clamp(2.5rem, 5vw, 4rem);
+  --pf-section-gap-large: clamp(3.25rem, 6.5vw, 5.25rem);
+  --pf-section-divider: rgba(15, 23, 42, 0.09);
+  --pf-section-scroll-margin: 5rem;
+  /* Visual height of fixed navbar bar (avatar row + vertical padding); keeps main content clear */
+  --pf-navbar-height: 3.75rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--pf-bg);
+  color: var(--pf-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.fade-in-block {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 650ms ease,
+    transform 650ms ease;
+}
+
+.fade-in-block.fade-in-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Portfolio UI (scoped via classes; replaces empty component SCSS files) --- */
+
+.pf-navbar {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 1020;
+  backdrop-filter: blur(10px);
+  background: rgba(248, 250, 252, 0.86);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+
+  .pf-navbar__inner {
+    padding-block: 0.55rem;
+  }
+
+  /* Center nav links: balanced 1fr | auto | 1fr grid */
+  .pf-navbar__bar {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 0.75rem 1rem;
+
+    @media (max-width: 991.98px) {
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto;
+    }
+  }
+
+  .pf-navbar__start {
+    justify-self: start;
+
+    @media (max-width: 991.98px) {
+      grid-column: 1;
+      grid-row: 1;
+    }
+  }
+
+  .pf-navbar__collapse {
+    justify-self: center;
+
+    @media (min-width: 992px) {
+      grid-column: 2;
+      grid-row: 1;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    @media (max-width: 991.98px) {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+  }
+
+  .pf-navbar__end {
+    justify-self: end;
+
+    @media (max-width: 991.98px) {
+      grid-column: 2;
+      grid-row: 1;
+    }
+  }
+
+  .pf-navbar__brand {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--pf-text);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--pf-accent);
+    }
+  }
+
+  .pf-navbar__toggler {
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    border-radius: 10px;
+    padding: 0.35rem 0.6rem;
+    line-height: 1;
+
+    &:focus-visible {
+      outline: 2px solid var(--pf-accent);
+      outline-offset: 2px;
+    }
+
+    mat-icon {
+      display: block;
+    }
+  }
+
+  .pf-navbar__link {
+    border-radius: 999px;
+    padding: 0.45rem 0.85rem !important;
+    color: var(--pf-muted);
+    font-weight: 500;
+    transition:
+      color 160ms ease,
+      background-color 160ms ease;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--pf-text);
+      background: rgba(37, 99, 235, 0.06);
+    }
+
+    &.is-active {
+      color: var(--pf-accent);
+      background: rgba(37, 99, 235, 0.1);
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .pf-navbar .pf-navbar__collapse {
+    display: flex !important;
+  }
+}
+
+.pf-footer {
+  margin-top: auto;
+  border-top: 1px solid rgba(15, 23, 42, 0.07);
+  background:
+    radial-gradient(ellipse 80% 120% at 50% 0%, rgba(37, 99, 235, 0.05), transparent 55%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(248, 250, 252, 0.94) 100%);
+
+  .pf-footer__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-block: 1.75rem;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .pf-footer__copy {
+    margin: 0;
+    color: var(--pf-muted);
+    font-size: 0.95rem;
+  }
+
+  .pf-footer__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    a {
+      color: var(--pf-accent);
+      text-decoration: none;
+      font-weight: 500;
+
+      &:hover,
+      &:focus-visible {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.section-title {
+  margin-bottom: clamp(2rem, 4vw, 2.75rem);
+  text-align: center;
+
+  .section-title__heading {
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--pf-text);
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+  }
+
+  .section-title__subtitle {
+    margin: 0.5rem 0 0;
+    max-width: 42rem;
+    margin-inline: auto;
+    color: var(--pf-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+.app-card {
+  --card-bg: #ffffff;
+  --card-border: rgba(15, 23, 42, 0.08);
+  --card-shadow: 0 12px 40px rgba(15, 23, 42, 0.06);
+
+  height: 100%;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  box-shadow: var(--card-shadow);
+  transition:
+    box-shadow 180ms ease,
+    transform 180ms ease,
+    border-color 180ms ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 48px rgba(15, 23, 42, 0.1);
+    border-color: rgba(37, 99, 235, 0.22);
+  }
+
+  &.app-card--flat {
+    box-shadow: none;
+
+    &:hover {
+      transform: none;
+      border-color: rgba(37, 99, 235, 0.28);
+    }
+  }
+
+  .app-card__header {
+    padding: 1.1rem 1.25rem 0;
+  }
+
+  .app-card__title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--pf-text);
+  }
+
+  .app-card__body {
+    padding: 1rem 1.25rem 1.25rem;
+  }
+}
+
+/* Horizontal inset: must live on `.container-xxl` — Bootstrap sets `--bs-gutter-x` per container,
+   so a parent-only variable was ignored and content sat flush to the viewport edge. */
+.pf-shell .container-xxl {
+  --bs-gutter-x: clamp(2.25rem, 6vw, 5rem);
+}
+
+.pf-shell {
+  min-height: 100vh;
+  padding-top: var(--pf-navbar-height);
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(ellipse 100% 65% at 50% -12%, rgba(59, 130, 246, 0.09), transparent 58%),
+    radial-gradient(1100px 580px at 8% -8%, rgba(99, 102, 241, 0.06), transparent 54%),
+    radial-gradient(880px 520px at 92% 4%, rgba(14, 165, 233, 0.07), transparent 52%),
+    linear-gradient(185deg, #eef4fc 0%, var(--pf-bg) 42%, #e8edf5 100%);
+
+  .pf-shell__main {
+    flex: 1 1 auto;
+    padding-block: clamp(1.75rem, 4vw, 3rem);
+    outline: none;
+  }
+}
+
+/* Extra breathing room between stacked sections on the one-page portfolio */
+.portfolio-page .section-title {
+  margin-bottom: clamp(2.25rem, 4.5vw, 3rem);
+}
+
+.pf-scroll-top {
+  position: fixed;
+  right: max(0.85rem, env(safe-area-inset-right, 0px));
+  bottom: max(0.85rem, env(safe-area-inset-bottom, 0px));
+  z-index: 1030;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(10px);
+  box-shadow:
+    0 4px 14px rgba(15, 23, 42, 0.18),
+    0 0 0 1px rgba(37, 99, 235, 0.12);
+  transition:
+    opacity 200ms ease,
+    visibility 200ms ease,
+    transform 200ms ease;
+
+  &.pf-scroll-top--visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  mat-icon {
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.page-cert {
+  .cert-list,
+  .achieve-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .cert-list__item,
+  .achieve-list__item {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.65rem 0;
+
+    & + & {
+      border-top: 1px solid rgba(15, 23, 42, 0.06);
+    }
+  }
+
+  .cert-list__badge {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--pf-accent);
+
+    mat-icon {
+      font-size: 22px;
+    }
+  }
+
+  .cert-list__title,
+  .achieve-list__title {
+    margin: 0;
+    font-weight: 650;
+    color: var(--pf-text);
+  }
+
+  .cert-list__meta,
+  .achieve-list__detail {
+    margin: 0.15rem 0 0;
+    font-size: 0.92rem;
+    color: var(--pf-muted);
+    line-height: 1.5;
+  }
+
+  .achieve-list__icon {
+    color: rgba(245, 158, 11, 0.95);
+    margin-top: 0.15rem;
+  }
+}
+
+.page-academic {
+  .edu-card {
+    display: flex;
+    gap: 1rem;
+
+    .edu-card__icon {
+      flex: 0 0 auto;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(14, 165, 233, 0.12);
+      color: rgba(3, 105, 161, 0.95);
+    }
+
+    .edu-card__degree {
+      margin: 0;
+      font-size: 1.08rem;
+      font-weight: 650;
+      color: var(--pf-text);
+    }
+
+    .edu-card__school {
+      margin: 0.35rem 0 0;
+      color: var(--pf-muted);
+      font-weight: 500;
+    }
+
+    .edu-card__year {
+      margin: 0.25rem 0 0;
+      font-size: 0.92rem;
+      color: var(--pf-accent);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .edu-card__detail {
+      margin: 0.65rem 0 0;
+      color: var(--pf-muted);
+      line-height: 1.6;
+      font-size: 0.96rem;
+    }
+  }
+}

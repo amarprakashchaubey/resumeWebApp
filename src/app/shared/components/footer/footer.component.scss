@@ -1,0 +1,12 @@
+.pf-footer__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.pf-footer__icon {
+  flex-shrink: 0;
+  display: block;
+  object-fit: contain;
+  opacity: 0.95;
+}

@@ -1,0 +1,42 @@
+{
+  "name": "portfolio-app",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "fix-encoding": "node -e \"const fs=require('fs'),path=require('path');function looksUtf16(b){if(b.length<4)return false;if(b[0]===0xFF&&b[1]===0xFE)return true;let c=0;for(let i=0;i<Math.min(120,b.length-1);i+=2){if(b[i+1]===0&&b[i]>=9&&b[i]<=122)c++;}return c>25;}function fix(p){let b=fs.readFileSync(p);let s;if(b[0]===0xFF&&b[1]===0xFE)s=b.slice(2).toString('utf16le');else if(looksUtf16(b))s=b.toString('utf16le');else return false;fs.writeFileSync(p,s,'utf8');return true;}function walk(d){for(const f of fs.readdirSync(d,{withFileTypes:true})){if(f.name==='node_modules'||f.name==='dist')continue;const p=path.join(d,f.name);if(f.isDirectory())walk(p);else if(/\\.(ts|html|scss)$/.test(f.name))fix(p);}}walk('src');\"",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^19.2.21",
+    "@angular/cdk": "^19.2.19",
+    "@angular/common": "^19.2.0",
+    "@angular/compiler": "^19.2.0",
+    "@angular/core": "^19.2.0",
+    "@angular/forms": "^19.2.0",
+    "@angular/material": "^19.2.19",
+    "@angular/platform-browser": "^19.2.0",
+    "@angular/platform-browser-dynamic": "^19.2.0",
+    "@angular/router": "^19.2.0",
+    "bootstrap": "^5.3.8",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^19.2.25",
+    "@angular/cli": "^19.2.25",
+    "@angular/compiler-cli": "^19.2.0",
+    "@types/jasmine": "~5.1.0",
+    "jasmine-core": "~5.6.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "typescript": "~5.7.2"
+  }
+}

@@ -1,0 +1,40 @@
+<div class="page-cert" appFadeIn>
+  <app-section-title
+    title="Certifications"
+    subtitle="&ldquo;Credentials are mile markers, not the finish line&rdquo; &mdash; formal courses and verified learning that complement day-to-day engineering and how I share knowledge with others."
+  />
+  <div class="row g-4">
+    <div class="col-lg-6">
+      <app-card title="Certificates">
+        <ul class="cert-list">
+          @for (cert of certificates; track cert.name) {
+            <li class="cert-list__item">
+              <div class="cert-list__badge" aria-hidden="true">
+                <mat-icon>verified</mat-icon>
+              </div>
+              <div>
+                <h3 class="cert-list__title">{{ cert.name }}</h3>
+                <p class="cert-list__meta">{{ cert.issuer }} · {{ cert.year }}</p>
+              </div>
+            </li>
+          }
+        </ul>
+      </app-card>
+    </div>
+    <div class="col-lg-6">
+      <app-card title="Achievements">
+        <ul class="achieve-list">
+          @for (a of achievements; track a.title) {
+            <li class="achieve-list__item">
+              <mat-icon class="achieve-list__icon" aria-hidden="true">emoji_events</mat-icon>
+              <div>
+                <h3 class="achieve-list__title">{{ a.title }}</h3>
+                <p class="achieve-list__detail">{{ a.detail }}</p>
+              </div>
+            </li>
+          }
+        </ul>
+      </app-card>
+    </div>
+  </div>
+</div>

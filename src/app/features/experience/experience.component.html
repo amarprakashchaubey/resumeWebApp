@@ -1,0 +1,54 @@
+<div class="page-experience" appFadeIn>
+  <app-section-title
+    title="Experience"
+    subtitle="&ldquo;The best classroom is a production incident on a Friday&rdquo; &mdash; a timeline of teams, stacks, and responsibilities from enterprise product work to mentoring juniors."
+  />
+
+  <div class="exp-journey">
+    <div class="exp-journey__path" aria-hidden="true">
+      <span class="exp-journey__start">Start</span>
+      <span class="exp-journey__arrow" aria-hidden="true"></span>
+      <span class="exp-journey__end">Today</span>
+    </div>
+
+    <ul class="exp-timeline" role="list">
+      @for (item of items; track item.company; let i = $index) {
+        <li class="exp-timeline__item">
+          <div class="exp-timeline__rail" aria-hidden="true">
+            <span
+              class="exp-timeline__marker"
+              [class.exp-timeline__marker--current]="i === 0"
+            >
+              <span class="exp-timeline__step-num">{{ items.length - i }}</span>
+            </span>
+          </div>
+
+          <article class="exp-glass-card" tabindex="0">
+            <div class="exp-glass-card__surface">
+              <div class="exp-glass-card__preview">
+                @if (i === 0) {
+                  <span class="exp-glass-card__badge exp-glass-card__badge--now">Present</span>
+                }
+                <h3 class="exp-glass-card__title">{{ item.company }}</h3>
+              </div>
+
+              <div class="exp-glass-card__expand">
+                <div class="exp-glass-card__expand-inner">
+                  <div class="exp-glass-card__meta">
+                    <span class="exp-glass-card__role">{{ item.role }}</span>
+                    <span class="exp-glass-card__duration">{{ item.duration }}</span>
+                  </div>
+                  <ul class="exp-glass-card__bullets">
+                    @for (resp of item.responsibilities; track resp; let ri = $index) {
+                      <li class="exp-glass-card__bullet" [style.--tag-i]="ri">{{ resp }}</li>
+                    }
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+        </li>
+      }
+    </ul>
+  </div>
+</div>

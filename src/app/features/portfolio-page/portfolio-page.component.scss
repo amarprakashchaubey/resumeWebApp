@@ -1,0 +1,129 @@
+:host {
+  display: block;
+}
+
+/* Shared texture utilities (subtle, readable on light UI) */
+@mixin texture-grid($size: 28px, $alpha: 0.045) {
+  background-image:
+    linear-gradient(rgba(15, 23, 42, $alpha) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, $alpha) 1px, transparent 1px);
+  background-size: $size $size;
+}
+
+@mixin texture-dots($size: 20px, $alpha: 0.06) {
+  background-image: radial-gradient(circle at center, rgba(15, 23, 42, $alpha) 1px, transparent 1px);
+  background-size: $size $size;
+}
+
+.portfolio-page {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.portfolio-section {
+  position: relative;
+  scroll-margin-top: var(--pf-section-scroll-margin, 5rem);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+/* --- Hero: crisp sky wash + IDE grid --- */
+.portfolio-section--hero {
+  padding-bottom: var(--pf-section-gap-large);
+  padding-inline: clamp(0.5rem, 1.75vw, 1rem);
+  background-color: #eef5ff;
+  background-image:
+    radial-gradient(ellipse 95% 60% at 82% 5%, rgba(59, 130, 246, 0.22), transparent 50%),
+    radial-gradient(ellipse 65% 50% at 8% 92%, rgba(139, 92, 246, 0.14), transparent 52%),
+    linear-gradient(158deg, #ffffff 0%, #f0f7ff 42%, #e8eff9 100%);
+  @include texture-grid(32px, 0.052);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 14px 52px rgba(37, 99, 235, 0.07);
+}
+
+/* --- Content sections: base chrome --- */
+.portfolio-section--content {
+  padding-block: var(--pf-section-gap-large);
+  padding-inline: clamp(0.5rem, 1.75vw, 1rem);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-top: 1px solid transparent;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.88),
+    0 14px 44px rgba(15, 23, 42, 0.06);
+}
+
+/* Skills: cyan-teal tech stack --- */
+#skills.portfolio-section--content {
+  background-color: #dff3fb;
+  background-image:
+    radial-gradient(ellipse 110% 85% at 50% -25%, rgba(6, 182, 212, 0.35), transparent 56%),
+    radial-gradient(ellipse 70% 55% at 100% 80%, rgba(14, 165, 233, 0.12), transparent 55%),
+    linear-gradient(185deg, #f0fbff 0%, #d9eef8 48%, #cfe8f5 100%);
+  @include texture-dots(18px, 0.065);
+}
+
+/* Experience: steel blue + timeline bands --- */
+#experience.portfolio-section--content {
+  background-color: #d8e4f2;
+  background-image:
+    repeating-linear-gradient(
+      -12deg,
+      transparent,
+      transparent 52px,
+      rgba(30, 64, 175, 0.055) 52px,
+      rgba(30, 64, 175, 0.055) 53px
+    ),
+    radial-gradient(ellipse 85% 65% at 100% 45%, rgba(59, 130, 246, 0.18), transparent 58%),
+    linear-gradient(188deg, #f4f8fd 0%, #dce8f4 45%, #cbd9ea 100%);
+}
+
+/* Projects: indigo build / ship --- */
+#projects.portfolio-section--content {
+  background-color: #e4e8ff;
+  background-image:
+    radial-gradient(ellipse 75% 55% at 12% 18%, rgba(99, 102, 241, 0.28), transparent 58%),
+    radial-gradient(ellipse 60% 50% at 94% 78%, rgba(79, 70, 229, 0.2), transparent 52%),
+    linear-gradient(198deg, #f5f6ff 0%, #e6e9fc 40%, #dadcf8 100%);
+  @include texture-grid(24px, 0.048);
+}
+
+/* Certifications: warm parchment + achievement glow --- */
+#certifications.portfolio-section--content {
+  background-color: #faf3e8;
+  background-image:
+    radial-gradient(ellipse 60% 50% at 50% -5%, rgba(251, 191, 36, 0.35), transparent 58%),
+    radial-gradient(ellipse 95% 75% at 85% 100%, rgba(59, 130, 246, 0.12), transparent 55%),
+    linear-gradient(178deg, #fffdfb 0%, #faf1e4 48%, #f2e6d8 100%);
+  @include texture-dots(22px, 0.052);
+}
+
+/* Academic: notebook paper --- */
+#academic.portfolio-section--content {
+  background-color: #f4efe6;
+  background-image:
+    repeating-linear-gradient(
+      transparent,
+      transparent 31px,
+      rgba(120, 113, 108, 0.07) 31px,
+      rgba(120, 113, 108, 0.07) 32px
+    ),
+    linear-gradient(180deg, #fdfcfa 0%, #f3ebe2 55%, #ebe3d8 100%);
+}
+
+.portfolio-section--hero + .portfolio-section--content {
+  margin-top: clamp(0.35rem, 1.2vw, 0.85rem);
+}
+
+.portfolio-section--content .row {
+  --bs-gutter-x: 1.75rem;
+  --bs-gutter-y: 1.75rem;
+}
+
+@media (min-width: 992px) {
+  .portfolio-section--content .row {
+    --bs-gutter-x: 2.25rem;
+    --bs-gutter-y: 2.25rem;
+  }
+}

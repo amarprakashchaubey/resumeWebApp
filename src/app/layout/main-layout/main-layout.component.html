@@ -1,0 +1,18 @@
+<div class="pf-shell">
+  <app-navbar />
+  <main class="pf-shell__main container-xxl" tabindex="-1">
+    <router-outlet />
+  </main>
+  <app-footer />
+  <button
+    mat-mini-fab
+    color="primary"
+    type="button"
+    class="pf-scroll-top"
+    [class.pf-scroll-top--visible]="showScrollTop()"
+    (click)="scrollToTop()"
+    aria-label="Back to top"
+  >
+    <mat-icon>keyboard_arrow_up</mat-icon>
+  </button>
+</div>

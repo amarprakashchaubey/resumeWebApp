@@ -1,0 +1,57 @@
+<header class="pf-navbar">
+  <div class="container-xxl pf-navbar__inner">
+    <div class="pf-navbar__bar">
+      <div class="pf-navbar__start">
+        <a
+          routerLink="/"
+          fragment="home"
+          class="pf-navbar__brand pf-navbar__brand--avatar text-decoration-none"
+          (click)="closeMenu()"
+          [attr.aria-label]="profile.name"
+        >
+            <img
+              [src]="profile.profileFaceSrc"
+              alt="APC"
+              class="pf-navbar__avatar-img"
+              width="40"
+              height="40"
+              decoding="async"
+            />
+
+        </a>
+      </div>
+
+      <nav
+        id="pf-navbar-links"
+        class="pf-navbar__collapse align-items-lg-center gap-lg-2"
+        [class.is-open]="menuOpen"
+        aria-label="Primary"
+      >
+        @for (item of items; track item.fragment) {
+          <a
+            class="pf-navbar__link text-decoration-none"
+            routerLink="/"
+            [fragment]="item.fragment"
+            [class.is-active]="activeSectionId() === item.fragment"
+            (click)="closeMenu()"
+          >
+            {{ item.label }}
+          </a>
+        }
+      </nav>
+
+      <div class="pf-navbar__end">
+        <button
+          type="button"
+          class="pf-navbar__toggler d-lg-none btn btn-light"
+          (click)="toggleMenu()"
+          [attr.aria-expanded]="menuOpen"
+          aria-controls="pf-navbar-links"
+          aria-label="Toggle navigation"
+        >
+          <mat-icon>{{ menuOpen ? 'close' : 'menu' }}</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>

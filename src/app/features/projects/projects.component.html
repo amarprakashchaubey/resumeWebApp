@@ -1,0 +1,62 @@
+<div class="page-projects" appFadeIn>
+  <app-section-title
+    title="Projects"
+    subtitle="&ldquo;Software is never done in a vacuum&rdquo; &mdash; shipping across insurance, finance, education, marketing, and mechanical design taught me how domains shape architecture, APIs, and UX."
+  />
+
+  <div class="projects-glass-grid row g-4">
+    @for (project of projects; track project.name) {
+      <div class="col-md-6">
+        <article class="proj-glass-card" tabindex="0">
+          <div class="proj-glass-card__surface">
+            <div class="proj-glass-card__preview">
+              <h3 class="proj-glass-card__title">{{ project.name }}</h3>
+              <p class="proj-glass-card__type">{{ project.projectType }}</p>
+            </div>
+
+            <div class="proj-glass-card__expand">
+              <div class="proj-glass-card__expand-inner">
+                <p class="proj-glass-card__period">{{ project.period }}</p>
+                <p class="proj-glass-card__desc">{{ project.details }}</p>
+
+                <p class="proj-glass-card__tech-heading">Technologies</p>
+                <div class="proj-glass-card__tech">
+                  @for (tech of project.technologies; track tech; let ti = $index) {
+                    <span class="proj-tech-pill" [style.--tag-i]="ti">{{ tech }}</span>
+                  }
+                </div>
+
+                <div class="proj-glass-card__actions">
+                  @if (project.demoUrl) {
+                    <a
+                      mat-stroked-button
+                      color="primary"
+                      [href]="project.demoUrl"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <mat-icon>launch</mat-icon>
+                      Demo
+                    </a>
+                  }
+                  @if (project.githubUrl) {
+                    <a
+                      mat-button
+                      color="primary"
+                      [href]="project.githubUrl"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <mat-icon>code</mat-icon>
+                      Code
+                    </a>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    }
+  </div>
+</div>
