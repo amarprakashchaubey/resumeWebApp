@@ -14,7 +14,11 @@
               </div>
               <div>
                 <h3 class="cert-list__title">{{ cert.name }}</h3>
-                <p class="cert-list__meta">{{ cert.issuer }} · {{ cert.year }}</p>
+                <p class="cert-list__meta">
+                  <span class="cert-list__issuer">{{ cert.issuer }}</span>
+                  <span class="cert-list__sep" aria-hidden="true">·</span>
+                  <span class="cert-list__year">{{ cert.year }}</span>
+                </p>
               </div>
             </li>
           }

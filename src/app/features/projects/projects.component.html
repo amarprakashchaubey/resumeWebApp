@@ -21,8 +21,8 @@
 
                 <p class="proj-glass-card__tech-heading">Technologies</p>
                 <div class="proj-glass-card__tech">
-                  @for (tech of project.technologies; track tech; let ti = $index) {
-                    <span class="proj-tech-pill" [style.--tag-i]="ti">{{ tech }}</span>
+                  @for (tech of project.technologies; track tech) {
+                    <span class="proj-tech-pill">{{ tech }}</span>
                   }
                 </div>
 
