@@ -5,7 +5,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './section-title.component.html',
-  styleUrl: './section-title.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SectionTitleComponent {

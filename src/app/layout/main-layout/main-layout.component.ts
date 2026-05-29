@@ -18,7 +18,6 @@ import { NavbarComponent } from '../../shared/components/navbar/navbar.component
   standalone: true,
   imports: [RouterOutlet, NavbarComponent, FooterComponent, MatMiniFabButton, MatIconModule],
   templateUrl: './main-layout.component.html',
-  styleUrl: './main-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainLayoutComponent {

@@ -10,7 +10,6 @@ import { FadeInDirective } from '../../shared/directives/fade-in.directive';
   standalone: true,
   imports: [SectionTitleComponent, CardComponent, MatIconModule, FadeInDirective],
   templateUrl: './academic.component.html',
-  styleUrl: './academic.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AcademicComponent {
